@@ -13,5 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+EXPOSE 8000
+
 # Command to run the FastAPI app with Gunicorn
 CMD ["fastapi", "dev", "main.py"]
