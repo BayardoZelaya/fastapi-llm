@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+# Expose port 8000
 EXPOSE 8000
 
 # Command to run the FastAPI app with Gunicorn
-CMD ["fastapi", "dev", "main.py"]
+CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000", "main:app"]
